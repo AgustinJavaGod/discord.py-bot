@@ -1,19 +1,21 @@
 import os
 import discord
-from discord.ext import commands
 from dotenv import load_dotenv
 
 load_dotenv()
-bot = commands.Bot(command_prefix='$', description="AgustinJavaGod bot",intents=discord.Intents.all())
-token = os.getenv("token")
+token = os.getenv('token')
+client = discord.Client(intents=discord.Intents.default())
 
-@bot.event
+@client.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="videos explained even better than I explain"))
-    print("Ready")
+    print(f'Bot {client.user} started')
 
-@bot.command()
-async def ping(ctx):
-  await ctx.send('pong 🏓')
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
 
-bot.run(token)
+    if message.content.startswith('$ping'):
+        await message.channel.send('pong 🏓')
+
+client.run(token)
