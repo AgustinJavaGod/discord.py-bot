@@ -13,7 +13,8 @@ class Ping(commands.Cog):
         description="Ping command"
     )
     async def ping(self, ctx):
-        await ctx.send("pong 🏓!")
+        latency = round(self.bot.latency * 1000)
+        await ctx.respond(f'pong 🏓! {latency}ms.')
 
 def setup(bot):
     bot.add_cog(Ping(bot))
