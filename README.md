@@ -32,3 +32,6 @@ This way there's no way of leaking secrets on public repos.
 
 ## Lesson 4
 Making a modulable bot, using cogs for individual files for each command inside the folder commands.
+
+## Lesson 5
+Move the current bot from discord.py to py-cord to work with slash commands.
